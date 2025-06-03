@@ -2,4 +2,4 @@
 
 __pycache__
 
-/komi.db
+/database/**.*
