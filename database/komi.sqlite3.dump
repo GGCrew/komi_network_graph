@@ -1,0 +1,74 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "characters" (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	first_name TEXT,
+	last_name TEXT,
+	full_name TEXT
+, gender_id INTEGER);
+INSERT INTO characters VALUES(1,'Hitohito','Tadano','Hitohito Tadano',1);
+INSERT INTO characters VALUES(2,'Shouko','Komi','Shouko Komi',2);
+INSERT INTO characters VALUES(3,'Najimi','Osana','Najimi Osana',3);
+CREATE TABLE genders (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	gender TEXT
+);
+INSERT INTO genders VALUES(1,'Male');
+INSERT INTO genders VALUES(2,'Female');
+INSERT INTO genders VALUES(3,'Unidentified');
+CREATE TABLE communications (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	identifier TEXT,
+	"position" INTEGER NOT NULL
+);
+INSERT INTO communications VALUES(1,'',1);
+INSERT INTO communications VALUES(2,'Communication 1',2);
+CREATE TABLE pages (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	communication_id INTEGER,
+	communication_page_number INTEGER NOT NULL,
+	book_page_number INTEGER
+);
+INSERT INTO pages VALUES(1,2,1,7);
+INSERT INTO pages VALUES(2,2,2,8);
+INSERT INTO pages VALUES(3,2,3,9);
+CREATE TABLE appearances (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	panel_id INTEGER NOT NULL,
+	character_id INTEGER NOT NULL
+);
+INSERT INTO appearances VALUES(1,1,1);
+INSERT INTO appearances VALUES(2,2,1);
+INSERT INTO appearances VALUES(3,3,1);
+INSERT INTO appearances VALUES(4,4,1);
+INSERT INTO appearances VALUES(5,5,1);
+INSERT INTO appearances VALUES(6,6,1);
+INSERT INTO appearances VALUES(7,7,1);
+INSERT INTO appearances VALUES(8,8,1);
+INSERT INTO appearances VALUES(9,8,2);
+INSERT INTO appearances VALUES(10,9,1);
+INSERT INTO appearances VALUES(11,9,2);
+INSERT INTO appearances VALUES(12,10,1);
+INSERT INTO appearances VALUES(13,10,2);
+CREATE TABLE panels (
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	page_id INTEGER NOT NULL
+, "number" INTEGER NOT NULL);
+INSERT INTO panels VALUES(1,1,1);
+INSERT INTO panels VALUES(2,1,2);
+INSERT INTO panels VALUES(3,1,3);
+INSERT INTO panels VALUES(4,1,4);
+INSERT INTO panels VALUES(5,2,1);
+INSERT INTO panels VALUES(6,2,2);
+INSERT INTO panels VALUES(7,2,3);
+INSERT INTO panels VALUES(8,2,4);
+INSERT INTO panels VALUES(9,2,5);
+INSERT INTO panels VALUES(10,3,1);
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('characters',3);
+INSERT INTO sqlite_sequence VALUES('genders',3);
+INSERT INTO sqlite_sequence VALUES('appearances',13);
+INSERT INTO sqlite_sequence VALUES('panels',10);
+INSERT INTO sqlite_sequence VALUES('communications',2);
+INSERT INTO sqlite_sequence VALUES('pages',3);
+COMMIT;
